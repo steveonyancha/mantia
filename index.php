@@ -5,5 +5,6 @@
     <!-- proposed site for pharmacy management system- Simple and effective - -->
   </head>
   <body>
+    eriogo
   </body>
 </html>
