@@ -5,18 +5,13 @@
 
 if(!isset($_SESSION['username']))
 {
-
-header("Location: login.php");
+header("Location: welcome.php");
 exit;
-}
-if($_SESSION['priv'] == "user"){
-    echo $_SESSION['priv'];
-	header("Location: user.php");
-	exit;
 }
 ?>
 <?php
-
+$timezone = "Asia/Manila";
+if(function_exists('date_default_timezone_set')) date_default_timezone_set($timezone);
 include("database/config.php");
 ?>
 
@@ -24,9 +19,6 @@ include("database/config.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="icon" 
-      type="image/png" 
-      href="images/road.png" />
 
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -45,10 +37,9 @@ $('#as').load('backup.php').fadeIn("slow");
   
   <!--Script top is process to add-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ADMIN HOME</title>
+<title>Untitled Document</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
-	
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />	
 
 </head>
 
@@ -71,22 +62,24 @@ $('#as').load('backup.php').fadeIn("slow");
 <body>
 
 <div class="header">
- <h2 style="margin-left:15%; color:white; margin-top:0">Road Inspection Software Tool</h2> 
+  
 </div>
 <?php include('menu.php'); ?>
 <!-- <div style="width:100%; background:#3B5998; border: #000 1px solid;"></div>
 --><div class="wrapper">
 <div class="head">
 <div class="head_title">
-
+<?php if(isset($_GET['borrowBooks'])){ ?> Borrow Books<?php } ?>
+<?php if(isset($_GET['overdue'])){ ?>Over Due Books<?php } ?>
+<?php if(isset($_GET['allreserved'])){ ?> Reserved Books<?php } ?>
+<?php if(isset($_GET['addBooks'])){ ?> Add Books<?php } ?>
 <?php if(isset($_GET['searchBooks'])){ ?>Search Books<?php } ?>
 <?php if(isset($_GET['addUser'])){ ?> Add User<?php } ?>
 <?php if(isset($_GET['searchUser'])){ ?>Search User<?php } ?>
-<?php if(isset($_GET['addtask'])){ ?>Add Task<?php } ?>
-<?php if(isset($_GET['task'])){ ?>View Task<?php } ?>
-
-
-
+<?php if(isset($_GET['returnBooks'])){ ?>Return Books<?php } ?>
+<?php if(isset($_GET['unreturnbook'])){ ?>unreturn Borrower<?php } ?>
+<?php if(isset($_GET['unreturnedBooks'])){ ?>List of Unreturned Books<?php } ?>
+<?php if(isset($_GET['Booklist'])){ ?>List of Books<?php } ?>
 
 </div>
 </div>
@@ -99,29 +92,58 @@ if(isset($_GET['addUser'])){
 elseif(isset($_GET['searchUser'])){
 	 include('searchUser.php'); 
 	}
-elseif(isset($_GET['addtask'])){
-	 include('start.php'); 
+
+elseif(isset($_GET['addBooks'])){
+	 include('addBooks.php'); 
 	}
-	elseif(isset($_GET['task'])){
-	 include('viewtask.php'); 
+elseif(isset($_GET['searcB'])){
+	 include('searchBooks.php'); 
 	}
-	/*elseif(isset($_GET['delete'])){
-	 include('del.php'); 
-	}*/
-	
+elseif(isset($_GET['borrowBooks'])){
+	 include('borrowBooks.php'); 
+	}
+elseif(isset($_GET['returnBooks'])){
+	 include('returnBooks.php'); 
+	}
+	elseif(isset($_GET['unreturnbook'])){
+	 include('unreturnbook.php'); 
+	}
+	elseif(isset($_GET['unreturnedBooks'])){
+	 include('unreturnedBooks.php'); 
+	}
+	elseif(isset($_GET['print'])){
+	 include('print.php'); 
+	}
+	elseif(isset($_GET['Booklist'])){
+	 include('Booklist.php'); 
+	}
+
+elseif(isset($_GET['overdue'])){
+	 include('overdue.php'); 
+	}
+
+elseif(isset($_GET['backupdatabase'])){
+	 include('backupdatabase.php'); 
+	}
+	elseif(isset($_GET['allreserved'])){
+	 include('allreserved.php'); 
+	}	
 /*----------------------------------------------*/
 	
 	
 	
 /*----------------------------------------------*/
 	else{ ?>
-<center><br><br>
-<h4>Welcome to Road Inspection Software tool for kenyan Road <b>Admin Home</b></h4>
-<img src="admin.jpg" height="300" width="600"> 
-		</center><?php }
+<center><img src="images/Sma.jpeg" height="300"width="583" /></center><?php }
+
+	
+	 //include('login.php'); 
 
  ?>
-
+<?php if(isset($_GET['searchBooks'])){}
+elseif(isset($_GET['unreturnedBooks'])){}
+elseif(isset($_GET['overdue'])){}
+else{ ?>
     </div>
 <div class="footer">
 <div class="leftfoot"></div>
@@ -136,4 +158,4 @@ var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenu
 </body>
 </html>
 
-    <?php  ?>
+    <?php } ?>
