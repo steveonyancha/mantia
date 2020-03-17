@@ -6,8 +6,8 @@
 <?php 
 	include('database/config.php');
 $q="select * from tbuser";
-$rs=mysql_query($q);
-while($row=mysql_fetch_array($rs)){
+$rs=mysqli_query($link,$q);
+while($row=mysqli_fetch_array($rs)){
 	?>
 
   <tr bgcolor="#E8EDFF" align="center" class="hr" height="25">

@@ -63,6 +63,19 @@ input{
 	padding: 10px 24px;
 	border-radius: 5px;"></td>
   </tr>
+  <td>username:</td>
+        <td><input type="text" name="username" style=" 
+     
+   
+    border: 6;
+   
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+   
+    font-size: 12px;
+	padding: 10px 24px;
+	border-radius: 5px;"></td>
     <tr>
         <td>First name:</td>
         <td><input type="text" name="fname" style=" 
@@ -168,6 +181,7 @@ input{
 <?php
     include('database/config.php');
    @$id = $_POST['id'];
+   @$username = $_POST['username'];
    @$fname = $_POST['fname'];
    @$mname = $_POST['mname'];
    @$lname = $_POST['lname'];
@@ -177,16 +191,16 @@ input{
    @$priv = $_POST['priv'];
    if(@$_POST['submit']){
         $q = "select id from tbuser where email='$email'";
-		$rs = mysql_query($q) or die("error".mysql_error()) ;
-		$s = mysql_fetch_array($rs);
+		$rs = mysqli_query($link,$q) or die("error".mysql_error()) ;
+		$s = mysqli_fetch_array($rs);
 		if(!$rs){
 		 echo "<script>
                  alert('user exist');
                  </script>";}
       
    else{
-				 $query = "INSERT INTO tbuser (fname, mi, lname, id, password, email, priv) VALUES('$fname','$mname','$lname', '$id',  '$password', '$email', '$priv')";
-       $result = mysql_query($query) ;
+				 $query = "INSERT INTO tbuser (fname, mi, lname, id,username, password, email, priv) VALUES('$fname','$mname','$lname', '$id', '$username', '$password', '$email', '$priv')";
+       $result = mysqli_query($link,$query) ;
        if(!$result){
            echo "<script>
                  alert('user exist');

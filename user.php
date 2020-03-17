@@ -19,7 +19,7 @@ include("database/config.php");
 
 include("database/config.php");
      $username = $_SESSION['username'];
-     $query = "SELECT id FROM tbusers WHERE fname='$username'";
+     $query = "SELECT id FROM tbuser WHERE fname='$username'";
      $result = mysqli_query($link,$query) or die('Error:-'.mysqli_error($link));
      $Result = mysqli_fetch_array($result);
      $id = $Result['id'];

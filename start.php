@@ -111,9 +111,10 @@ font-size:12px;
 		</tr>
 		<tr><td>
 		<label>Inspection Id:</label></td><td>
-		<input type = "text" name = "inspectionId"  value="<?php include('database/config.php');$query='select max(inspectionId) from road_info';
-      			 $q = mysql_query($query) or die('error'.mysql_error());
-	 $q = mysql_fetch_array($q);
+        <input type = "text" name = "inspectionId"  value="<?php include('database/config.php');
+                $query='select max(inspectionId) from road_info';
+      			 $q = mysqli_query($link,$query) or die('error'.mysql_error());
+	 $q = mysqli_fetch_array($q);
 	 $new = $q[0]+1;
 	 echo $new;
 	?>" required style=" 

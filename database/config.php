@@ -39,7 +39,7 @@
    $mysqli -> close();
    */
    //Procedural style
-   $link = mysqli_connect("localhost","root","mongare!123456^","inspection");
+   $link = mysqli_connect("localhost","root","toor","inspectiondb");
 
    //check connection_aborted
    if(mysqli_connect_errno()){

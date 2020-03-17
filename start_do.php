@@ -15,8 +15,8 @@
 		if(isset($_POST['submit'])){
             
         $query ="SELECT email FROM tbuser WHERE id='$id'";
-            $result = mysql_query($query);
-            $Result = mysql_fetch_array($result,MYSQL_BOTH);
+            $result = mysqli_query($link,$query);
+            $Result = mysqli_fetch_array($result,MYSQL_BOTH);
             
             if($Result >= 1){
 		$query = "INSERT INTO road_info(id, district, roadNo, road_class, inspectionId,inspection_type,begin,end,distance) VALUES ('$id', '$district', '$roadNo', '$roadType', '$inspectionId','$inspectiontype','$begin','$end','$distance')";

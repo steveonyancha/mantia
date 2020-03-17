@@ -42,20 +42,20 @@
     $id = $_POST['detail'];
 	if($_POST['submit']){
     $s = "SELECT inspection_type,id FROM road_info WHERE inspectionId = '$id'";
-	$r = mysql_query($s) or die('error:'.mysql_error());
-	$r = mysql_fetch_array($r);
+	$r = mysqli_query($link,$s) or die('error:'.mysql_error());
+	$r = mysqli_fetch_array($r);
 	$intype = $r['inspection_type'];
 	
 	#query the correct table
 	$query = "SELECT * FROM $intype WHERE inspectionId=$id";
-	$result = mysql_query($query) or die('error'.mysql_error());
-    $Result = mysql_fetch_array($result);
+	$result = mysqli_query($link,$query) or die('error'.mysql_error());
+    $Result = mysqli_fetch_array($result);
 	
 	if($intype == 'ur'){
 	$rich = $Result['inspectionId'];
 	      $dis = "SELECT district, roadNo FROM road_info where inspectionId='$rich'";
-		  $emm = mysql_query($dis);
-		  $nao = mysql_fetch_array($emm);
+		  $emm = mysqli_query($dis);
+		  $nao = mysqli_fetch_array($emm);
 	 echo "<table border='1'>
     <tr><thead><center><b>inspection detail form:</b>"; echo $intype;  echo "<br><b>Inspection ID:</b>"; echo $Result['inspectionId'];  echo "<br><b>Road No:</b>"; echo $nao['roadNo'].",".$nao['district'].".</br>"; "</thead>
 	<thead><br>Shoulder Left<br></thead><tr>";
