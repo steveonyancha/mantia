@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 14, 2019 at 04:09 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Host: localhost
+-- Generation Time: Mar 17, 2020 at 10:17 AM
+-- Server version: 10.4.12-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -123,7 +125,6 @@ INSERT INTO `road_info` (`inspectionId`, `roadNo`, `road_class`, `id`, `district
 CREATE TABLE `tbuser` (
   `id` varchar(10) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `mi` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
@@ -135,12 +136,15 @@ CREATE TABLE `tbuser` (
 -- Dumping data for table `tbuser`
 --
 
-INSERT INTO `tbuser` (`id`, `email`, `username`, `fname`, `mi`, `lname`, `priv`, `password`) VALUES
-('', 'aminga@gmail.com', 'just', 'justine', 'aminga', 'o', 'user', 'toor'),
-('005', 'baswetima@gmail.com', '', 'michael', 'alex', 'basweti', 'user', 'toor'),
-('1', 'brayo@gmail.com', '', 'brayo', 'otieno', 'ojwang', 'user', 'bido'),
-('487', 'john@gmail.com', 'john', 'john', 'makeri', 'makeri', 'user', 'h43984'),
-('', 'njuguna@yahoo.com', 'steve', 'steve', 'ndemo', 'Njuguna', 'admin', 'toor');
+INSERT INTO `tbuser` (`id`, `email`, `fname`, `mi`, `lname`, `priv`, `password`) VALUES
+('', 'aminga@gmail.com', 'justine', 'aminga', 'o', 'user', 'toor'),
+('005', 'baswetima@gmail.com', 'michael', 'alex', 'basweti', 'user', 'toor'),
+('1', 'brayo@gmail.com', 'brayo', 'otieno', 'ojwang', 'user', 'bido'),
+('002', 'ndemo@gmail.com', 'richard', 'ndemo', 'ONYANCHA', 'user', 'richard'),
+('', 'njuguna@yahoo.com', 'steve', 'ndemo', 'Njuguna', 'admin', 'toor'),
+('', 'onyancha.stephen@yahoo.com', 'stephen', 'mongare', 'onyancha', 'user', 'toor'),
+('', 'skarume@laikipia.ac.ke', 'simon', 'karume', 'maina', 'user', 'simon'),
+('3180943', 'stivinmo@gmail.com', 'steve', 'mongare', 'onyancha', 'admin', 'toor');
 
 -- --------------------------------------------------------
 
@@ -220,6 +224,8 @@ ALTER TABLE `tbuser`
 --
 ALTER TABLE `road_info`
   MODIFY `inspectionId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8909885;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
